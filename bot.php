@@ -19,16 +19,6 @@ while(true){
 		$message=$r->getMessage();
 		$chatId=$message->getChat()->getId();
 		$text=$message->getText();
-		$keyboard = json_encode([
-			"inline_keyboard" => [
-				[
-					[
-						"text" => "Favourite",
-						"callback_data" => "setFavourite"
-					]
-				]
-			]	
-		]);
 	
 		switch($text){
 			case '/start':
@@ -53,8 +43,7 @@ while(true){
 				$meme = $memeResponse['url'];
 				$response = $client->sendMessage([
 					  'chat_id' => $chatId,
-					  'text' => $meme,
-					  'reply_markup' => $keyboard
+					  'text' => $meme
 				]);
 				break;
 			case '/nsfw':
@@ -63,8 +52,7 @@ while(true){
 				$meme = $memeResponse['url'];
 				$response = $client->sendMessage([
 					  'chat_id' => $chatId,
-					  'text' => $meme,
-					  'reply_markup' => $keyboard
+					  'text' => $meme
 				]);
 				break;
 			case '/boomer':
@@ -73,8 +61,7 @@ while(true){
 				$meme = $memeResponse['url'];
 				$response = $client->sendMessage([
 					  'chat_id' => $chatId,
-					  'text' => $meme,
-					  'reply_markup' => $keyboard
+					  'text' => $meme
 				]);
 				break;
 			case '/genZ':
@@ -83,8 +70,7 @@ while(true){
 				$meme = $memeResponse['url'];
 				$response = $client->sendMessage([
 					  'chat_id' => $chatId,
-					  'text' => $meme,
-					  'reply_markup' => $keyboard
+					  'text' => $meme
 				]);
 				break;
 			case '/football':
@@ -93,8 +79,7 @@ while(true){
 				$meme = $memeResponse['url'];
 				$response = $client->sendMessage([
 					  'chat_id' => $chatId,
-					  'text' => $meme,
-					  'reply_markup' => $keyboard
+					  'text' => $meme
 				]);
 				break;
 			case '/italian':
@@ -103,24 +88,20 @@ while(true){
 				$meme = $memeResponse['url'];
 				$response = $client->sendMessage([
 					  'chat_id' => $chatId,
-					  'text' => $meme,
-					  'reply_markup' => $keyboard
+					  'text' => $meme
 				]);
 				break;
-
-			/* Per quando risolvo il problema del pulsante:
-			Capsule::table('favourites')->insert([
-				'url' => url dell'immagine
-
-		]);
-		*/
+			case "/setFavourite":
+				Capsule::table('favourites')->insert([
+				'url' => $meme]);
+				break;
 			case '/favourites':
-				$favourites = Capsule::select('select * from favourites');
-				for($i = 0; i < sizeof($favourites); $i++){
+				$favourites = Capsule::table('favourites')->get();
+				foreach ($favourites as $fav) {
 					$response = $client->sendMessage([
 						'chat_id' => $chatId,
-						'text' => $favourites['url']
-				  ]);
+						'text' => $fav->url,
+					]);
 				}
 		}
 		
