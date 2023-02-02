@@ -93,15 +93,18 @@ while(true){
 				break;
 			case "/setFavourite":
 				Capsule::table('favourites')->insert([
+				'user_id' => $chatId,
 				'url' => $meme]);
 				break;
 			case '/favourites':
 				$favourites = Capsule::table('favourites')->get();
 				foreach ($favourites as $fav) {
+					if($fav->user_id == $chatId){
 					$response = $client->sendMessage([
 						'chat_id' => $chatId,
 						'text' => $fav->url,
 					]);
+				}
 				}
 		}
 		
