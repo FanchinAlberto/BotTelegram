@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 02, 2023 alle 16:30
+-- Creato il: Feb 02, 2023 alle 22:32
 -- Versione del server: 10.4.24-MariaDB
 -- Versione PHP: 8.1.6
 
@@ -29,8 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `favourites` (
   `id` int(11) NOT NULL,
+  `user_id` varchar(50) NOT NULL,
   `url` varchar(400) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `favourites`
+--
+
+INSERT INTO `favourites` (`id`, `user_id`, `url`) VALUES
+(2, '512828309', 'https://i.redd.it/cmflllhehrf91.jpg'),
+(3, '512828309', 'https://i.redd.it/2i8q4z7jztj81.jpg');
 
 --
 -- Indici per le tabelle scaricate
@@ -50,7 +59,7 @@ ALTER TABLE `favourites`
 -- AUTO_INCREMENT per la tabella `favourites`
 --
 ALTER TABLE `favourites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
