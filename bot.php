@@ -35,7 +35,7 @@ while(true){
 					-boomer \n
 					-genZ \n
 					-football \n
-					De, tocca divertirsi adesso!",
+					Tocca divertirsi adesso!",
 			  	]);
 				break;
 			case '/random':
