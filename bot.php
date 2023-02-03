@@ -98,6 +98,10 @@ while(true){
 				break;
 			case '/favourites':
 				$favourites = Capsule::table('favourites')->get();
+				$response = $client->sendMessage([
+					'chat_id' => $chatId,
+					'text' => 'Ecco i tuoi meme preferiti'
+				]);
 				foreach ($favourites as $fav) {
 					if($fav->user_id == $chatId){
 					$response = $client->sendMessage([
@@ -106,6 +110,7 @@ while(true){
 					]);
 				}
 				}
+				break;
 		}
 		
 	}
