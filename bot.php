@@ -26,6 +26,17 @@ while(true){
 					'chat_id' => $chatId,
 					'text' => 'https://www.giantfreakinrobot.com/wp-content/uploads/2022/06/hellotherethumb.jpg',
 			  	]);
+				$response = $client->sendMessage([
+					'chat_id' => $chatId,
+					'text' => "Ecco i miei comandi: \n
+					-random \n
+					-dark \n
+					-nsfw \n
+					-boomer \n
+					-genZ \n
+					-football \n
+					De, tocca divertirsi adesso!",
+			  	]);
 				break;
 			case '/random':
 				$memeResponse = file_get_contents('https://meme-api.com/gimme');
